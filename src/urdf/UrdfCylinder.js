@@ -1,22 +1,24 @@
 /**
- * @fileOverview 
+ * @fileOverview
  * @author Benjamin Pitzer - ben.pitzer@gmail.com
  * @author Russell Toris - rctoris@wpi.edu
  */
 
-var UrdfTypes = require('./UrdfTypes');
+import * as UrdfTypes from './UrdfTypes.js';
 
 /**
  * A Cylinder element in a URDF.
- *
- * @constructor
- * @param options - object with following keys:
- *  * xml - the XML element to parse
  */
-function UrdfCylinder(options) {
-  this.type = UrdfTypes.URDF_CYLINDER;
-  this.length = parseFloat(options.xml.getAttribute('length'));
-  this.radius = parseFloat(options.xml.getAttribute('radius'));
+export default class UrdfCylinder {
+  /**
+   * @param {Object} options
+   * @param {Element} options.xml - The XML element to parse.
+   */
+  constructor(options) {
+    this.type = UrdfTypes.URDF_CYLINDER;
+    // @ts-expect-error -- possibly null
+    this.length = parseFloat(options.xml.getAttribute('length'));
+    // @ts-expect-error -- possibly null
+    this.radius = parseFloat(options.xml.getAttribute('radius'));
+  }
 }
-
-module.exports = UrdfCylinder;

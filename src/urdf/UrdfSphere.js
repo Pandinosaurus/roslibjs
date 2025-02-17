@@ -1,21 +1,21 @@
 /**
- * @fileOverview 
+ * @fileOverview
  * @author Benjamin Pitzer - ben.pitzer@gmail.com
  * @author Russell Toris - rctoris@wpi.edu
  */
 
-var UrdfTypes = require('./UrdfTypes');
+import * as UrdfTypes from './UrdfTypes.js';
 
 /**
  * A Sphere element in a URDF.
- *
- * @constructor
- * @param options - object with following keys:
- *  * xml - the XML element to parse
  */
-function UrdfSphere(options) {
-  this.type = UrdfTypes.URDF_SPHERE;
-  this.radius = parseFloat(options.xml.getAttribute('radius'));
+export default class UrdfSphere {
+  /**
+   * @param {Object} options
+   * @param {Element} options.xml - The XML element to parse.
+   */
+  constructor(options) {
+    this.type = UrdfTypes.URDF_SPHERE;
+    this.radius = parseFloat(options.xml.getAttribute('radius') || 'NaN');
+  }
 }
-
-module.exports = UrdfSphere;
